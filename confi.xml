@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<listaEmpresas>
+    <empresa id="1234">
+        <nombre> Empresa empresosa </nombre>
+        <abreviatura> EE </abreviatura>
+        <listaPuntosAtencion>
+            <puntoAtencion id="1paE1">
+                <nombre> Banco Cuilapa </nombre>
+                <direccion> Cuilapa </direccion>
+                <listaEscritorios>
+                    <escritorio id="1eE1">
+                        <identificacion> identi 1E1 </identificacion>
+                        <encargado> Manuel Rivas </encargado>
+                    </escritorio>
+                    <escritorio id="1.1eE1">
+                        <identificacion> identi 1.1E1 </identificacion>
+                        <encargado> Miguel Cervantes </encargado>
+                    </escritorio>
+                     <escritorio id="1.2eE1">
+                        <identificacion> identi 1.2E1 </identificacion>
+                        <encargado> Cristina Aguilera </encargado>
+                    </escritorio>
+                </listaEscritorios>
+            </puntoAtencion>
+            <puntoAtencion id="2paE1">
+                <nombre> Banco Escuintleco </nombre>
+                <direccion> Escuintla </direccion>
+                <listaEscritorios>
+                    <escritorio id="2eE1">
+                        <identificacion> identi 2E1 </identificacion>
+                        <encargado> Miguel Biendonado </encargado>
+                    </escritorio>
+                </listaEscritorios>
+            </puntoAtencion>
+        </listaPuntosAtencion>
+        <listaTransacciones>
+            <transaccion id="1tE1">
+                <nombre> retiro </nombre>
+                <tiempoAtencion> 10 </tiempoAtencion>
+            </transaccion>
+            <transaccion id="2tE1">
+                <nombre> doble retiro </nombre>
+                <tiempoAtencion> 11 </tiempoAtencion>
+            </transaccion>
+        </listaTransacciones>
+    </empresa>
+    <empresa id="4444">
+        <nombre> Empresa sexosa </nombre>
+        <abreviatura> ES </abreviatura>
+        <listaPuntosAtencion>
+            <puntoAtencion id="1paE2">
+                <nombre> Banco San Lucas </nombre>
+                <direccion> San Lucas </direccion>
+                <listaEscritorios>
+                    <escritorio id="1eE2">
+                        <identificacion> identi 1E2 </identificacion>
+                        <encargado> Sami Khedira </encargado>
+                    </escritorio>
+                </listaEscritorios>
+            </puntoAtencion>
+        </listaPuntosAtencion>
+        <listaTransacciones>
+            <transaccion id="1tE2">
+                <nombre> Deposito </nombre>
+                <tiempoAtencion> 15 </tiempoAtencion>
+            </transaccion>
+        </listaTransacciones>
+        <listaTransacciones>
+            <transaccion id="2tE2">
+                <nombre> Deposito doble anual </nombre>
+                <tiempoAtencion> 16 </tiempoAtencion>
+            </transaccion>
+        </listaTransacciones>
+    </empresa>
+</listaEmpresas>

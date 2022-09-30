@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<listadoInicial>
+    <configInicial id="6969" idEmpresa="1234" idPunto="1paE1">
+        <escritoriosActivos>
+            <escritorio idEscritorio="1eE1"/>
+            <escritorio idEscritorio="1.1eE1"/>
+        </escritoriosActivos>
+        <listadoClientes>
+            <cliente dpi="3021892970101">
+                <nombre> Jose Menard </nombre>
+                <listadoTransacciones>
+                    <transaccion idTransaccion="1tE1" cantidad="5"/>
+                    <transaccion idTransaccion="2tE1" cantidad="2"/>
+                </listadoTransacciones>
+            </cliente>
+        </listadoClientes>
+    </configInicial>
+</listadoInicial>
