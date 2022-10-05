@@ -1,5 +1,4 @@
 from escritorios import Escritorios
-import os
 
 class PilaEscritorio:
     def __init__(self) -> None:

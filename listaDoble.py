@@ -1,6 +1,4 @@
 from empresa import Empresa
-import os
-
 class ListaDoble:
     def __init__(self) -> None:
         self.raiz = Empresa()

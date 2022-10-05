@@ -1,6 +1,6 @@
 #-*- coding:utf8 -*-
 
-from operator import length_hint
+
 from colorama import Fore
 from clientes import Clientes
 from configuracion import Configuracion
@@ -10,7 +10,6 @@ from escriActivos import EscriActivos
 from listaDobleC import ListaDobleC
 from listaDobleConfi import ListaDobleConfi
 from listaDobleEscriA import ListaDobleEscriA
-from listaDobleT import ListaDobleT
 from listaDobleTransa import ListaDobleTransa
 from puntosAtencion import PuntoAtencion
 from transaNueva import TransaNueva
@@ -25,7 +24,6 @@ def menu():
     pilaE=PilaEscritorio()
     listaEmpresasConfi=ListaDobleConfi()
     listaClientes= ListaDobleC()
-    listaTransaNueva=ListaDobleTransa()
     listaEscriActivo=ListaDobleEscriA()
    
     while opcionosa != '3':
@@ -204,9 +202,7 @@ def menu():
 
                         if opcion=="1":
                             print("Información de Puntos de Atención:\n")
-                            
-                            
-                               
+ 
                         elif opcion=="2":
                             puntoActual.escritorio.raiz.estado="activo"
                             print(Fore.GREEN +"el escritorio de: "+puntoActual.escritorio.raiz.nombreE+" ha sido activado exitosamente!")
@@ -287,10 +283,7 @@ def menu():
                             
                             print("los escritorios inactivos son: ")
                             puntoCurrent.escritorio.printPila()
-                            
-                            
-                            
-                               
+
                         elif opcion=="2":
                             puntoCurrent.escritorio.raiz.estado="activo"
                             print(Fore.GREEN +"el escritorio de: "+puntoCurrent.escritorio.raiz.nombreE+" ha sido activado exitosamente!")
@@ -384,13 +377,7 @@ def cargaArchivo1(ruta):
             nuevaEmpresa.transaccion.append(nuevaTransaccion)
 
         listaEmpresasDesdeXml.append(nuevaEmpresa)
-        #listaEmpresasDesdeXml.print()
-        #nuevaEmpresa.puntoAtencion.print()
-        #nuevoPuntoAtencion.escritorio.printPila()
-        #nuevaEmpresa.transaccion.print()
-
-
-
+        
     return listaEmpresasDesdeXml
 
 def cargaArchivo2(ruta):

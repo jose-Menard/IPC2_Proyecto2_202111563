@@ -10,7 +10,7 @@
                 <nombre> Jose Menard </nombre>
                 <listadoTransacciones>
                     <transaccion idTransaccion="1tE1" cantidad="5"/>
-                    <transaccion idTransaccion="2tE1" cantidad="2"/>
+                    <transaccion idTransaccion="2tE1" cantidad="7"/>
                 </listadoTransacciones>
             </cliente>
         </listadoClientes>

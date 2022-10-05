@@ -1,5 +1,4 @@
 from transacciones import Transacciones
-import os
 
 class ListaDobleT:
     def __init__(self) -> None:

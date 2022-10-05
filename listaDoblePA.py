@@ -1,5 +1,4 @@
 from puntosAtencion import PuntoAtencion
-import os
 
 class ListaDoblePA:
     def __init__(self) -> None:

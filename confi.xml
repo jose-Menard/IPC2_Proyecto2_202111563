@@ -62,7 +62,7 @@
         <listaTransacciones>
             <transaccion id="1tE2">
                 <nombre> Deposito </nombre>
-                <tiempoAtencion> 15 </tiempoAtencion>
+                <tiempoAtencion> 20 </tiempoAtencion>
             </transaccion>
         </listaTransacciones>
         <listaTransacciones>
