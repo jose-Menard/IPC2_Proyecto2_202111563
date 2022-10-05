@@ -55,5 +55,15 @@ class ListaDoble:
                 return None
         
         return nodoAux
+    
+    def search(self,dato):
+        i=self.raiz
+        while i:
+            if i.codigo==dato:
+                print(dato)
+                return True
+            i=i.siguiente
+        return False
+                
 
     

@@ -35,3 +35,24 @@ class ListaDobleTransa:
                 break
         
         print(cadena)  
+    
+    def search(self,dato):
+        i=self.raiz
+        while i:
+            if i.idtrans==dato:
+               
+                return True
+            i=i.siguiente
+        
+        return False
+    
+    def buscarByCodigo(self, codigo):
+        nodoAux=self.raiz
+        
+        while nodoAux.idtrans!=codigo:
+            if nodoAux.siguiente is not None:
+                nodoAux=nodoAux.siguiente
+            else:
+                return None
+        
+        return nodoAux

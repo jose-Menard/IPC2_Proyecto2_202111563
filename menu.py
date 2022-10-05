@@ -1,5 +1,6 @@
 #-*- coding:utf8 -*-
 
+from operator import length_hint
 from colorama import Fore
 from clientes import Clientes
 from configuracion import Configuracion
@@ -9,6 +10,8 @@ from escriActivos import EscriActivos
 from listaDobleC import ListaDobleC
 from listaDobleConfi import ListaDobleConfi
 from listaDobleEscriA import ListaDobleEscriA
+from listaDobleT import ListaDobleT
+from listaDobleTransa import ListaDobleTransa
 from puntosAtencion import PuntoAtencion
 from transaNueva import TransaNueva
 from transacciones import Transacciones
@@ -19,25 +22,12 @@ from pilaEscritorio import PilaEscritorio
 def menu():
     opcionosa = ''
     listaEmpresas = ListaDoble()
+    pilaE=PilaEscritorio()
+    listaEmpresasConfi=ListaDobleConfi()
+    listaClientes= ListaDobleC()
+    listaTransaNueva=ListaDobleTransa()
+    listaEscriActivo=ListaDobleEscriA()
    
-    
-    
-    pilaEs=PilaEscritorio()
-
-    pilaEs.append("1E","identi1","jose","inactivo")
-    pilaEs.append("2E","identi2","mario","inactivo")
-    pilaEs.append("3E","identi3","joel","inactivo")
- 
-    pilaEs.printPila()
-    pilaEs.getFirst()
-    pilaEs.delete()
-    pilaEs.printPila()
-    pilaEs.getFirst()
-    pilaEs.delete()
-    pilaEs.printPila()
-    
-    
-
     while opcionosa != '3':
         print(Fore.MAGENTA + "----------------------MENU PRINCIPAL--------------------")
         print(Fore.MAGENTA + "1 --- CONFIGURACIÓN DE EMPRESAS")
@@ -177,47 +167,172 @@ def menu():
                 
                 nombreArchivo = input(Fore.BLUE + "Ingrese el nombre del archivo de configuración XML\n")
                 ruta = './' + nombreArchivo
-                listaEmpresas = cargaArchivo2(ruta)
+                listaEmpresasConfi = cargaArchivo2(ruta)[0]
                 print(Fore.GREEN + "Se han cargado los datos con éxito!!\n")
                     
 
         elif opcionosa == '2':
-            print(Fore.BLUE + "----------MENÚ DE SELECCION--------")
-            codEmpresa = input(Fore.BLUE + "Ingresar codigo de la empresa a manipular: \n")
-            empresaActual = listaEmpresas.buscarByCodigo(codEmpresa)
-            if empresaActual is None:
-                print(Fore.RED + "Esa empresa no se encuentra registrado en la lista")
-            else:
-                codPA=input(Fore.BLUE +"está en "+empresaActual.nombre+ ", ingrese el codigo del punto de atención a manipular : \n")
-                puntoActual=empresaActual.puntoAtencion.buscarByCodigo(codPA)
-       
-                if puntoActual is None:
-                    print(Fore.RED + "Ese escritorio no se encuentra registrado en la lista de empresas")
+            print(Fore.BLUE + "Querido empresario, ¿Qué desea hacer? \n")
+            print(Fore.BLUE + "1 --- ingresar manualmente los datos")
+            print(Fore.BLUE + "2 --- usar datos cargados del archivo \n")
+
+            respuesturbia=input("¿Qué opción prefiere?  \n")
+
+            if respuesturbia=="1":
+                print(Fore.BLUE + "----------MENÚ DE SELECCION--------")
+                codEmpresa = input(Fore.BLUE + "Ingresar codigo de la empresa a manipular: \n")
+                empresaActual = listaEmpresas.buscarByCodigo(codEmpresa)
+                if empresaActual is None:
+                    print(Fore.RED + "Esa empresa no se encuentra registrado en la lista")
                 else:
+                    codPA=input(Fore.BLUE +"está en "+empresaActual.nombre+ ", ingrese el codigo del punto de atención a manipular : \n")
+                    puntoActual=empresaActual.puntoAtencion.buscarByCodigo(codPA)
+        
+                    if puntoActual is None:
+                        print(Fore.RED + "Ese escritorio no se encuentra registrado en la lista de empresas")
+                    else:
 
-                    print("Usted está en "+puntoActual.nombre+", indique a continuación qué desea hacer: ")
-                    print(Fore.BLUE + "1-- Ver estado de punto de atención")
-                    print(Fore.BLUE + "2-- Activar escritorio de servicio")
-                    print(Fore.BLUE + "3-- Desactivar escritorio de servicio")
-                    print(Fore.BLUE + "4-- Atender cliente")
-                    print(Fore.BLUE + "5-- Solicitud de atención")
-                    print(Fore.BLUE + "6-- Simular actividad")
-                
-                    opcion = input(Fore.BLUE + "Favor seleccionar una opcion porfavor \n")
+                        print("Usted está en "+puntoActual.nombre+", indique a continuación qué desea hacer: ")
+                        print(Fore.BLUE + "1-- Ver estado de punto de atención")
+                        print(Fore.BLUE + "2-- Activar escritorio de servicio")
+                        print(Fore.BLUE + "3-- Desactivar escritorio de servicio")
+                        print(Fore.BLUE + "4-- Atender cliente")
+                        print(Fore.BLUE + "5-- Solicitud de atención")
+                        print(Fore.BLUE + "6-- Simular actividad")
+                    
+                        opcion = input(Fore.BLUE + "Favor seleccionar una opcion porfavor \n")
 
-                    if opcion=="1":
-                        print("estás en 'Ver estado de punto de atención' ")
-                    elif opcion=="2":
-                        print("estás en 'Activar escritorio de servicio' ")
-                    elif opcion=="3":
-                        print("estás en 'Desactivar escritorio de servicio' ")
-                    elif opcion=="4":
-                        print("estas en 'Atender cliente' ")
-                    elif opcion=="5":
-                        print("estás en 'Solicitud de atención' ")
-                    elif opcion=="6":
-                        print("estás en 'Simular actividad' ")
+                        if opcion=="1":
+                            print("Información de Puntos de Atención:\n")
+                            
+                            
+                               
+                        elif opcion=="2":
+                            puntoActual.escritorio.raiz.estado="activo"
+                            print(Fore.GREEN +"el escritorio de: "+puntoActual.escritorio.raiz.nombreE+" ha sido activado exitosamente!")
+                        elif opcion=="3":
+                            puntoActual.escritorio.raiz.estado="inactivo"
+                            print(Fore.GREEN +"el escritorio de "+puntoActual.escritorio.raiz.nombreE+" ha sido desactivado exitosamente!")
+                        elif opcion=="4":
+                            print("estas en 'Atender cliente' ")
+                        elif opcion=="5":
+                            nombreCliente=input("¿Cuál es el nombre del nuevo cliente?\n ")
+                            dpiCliente=input("¿Cuál es el dpi del nuevo cliente?\n ")
+                            
 
+                            nuevoClien=Clientes(dpiCliente,nombreCliente)
+                            listaClientes.append(nuevoClien)
+                        
+
+                            print(Fore.GREEN + "Se agregado al cliente con exito!!\n")
+                            
+                            codigoTransa=input(Fore.BLUE +"Ingrese el código de la transacción que realizará\n ")
+                            cantitransa=input("Ingrese la cantidad de transacciones de ese tipo que hará\n ")
+                            
+                            nuevaTrans=TransaNueva(codigoTransa,cantitransa)
+                            nuevoClien.transaNueva.append(nuevaTrans)
+
+                            print("el id de la nueva transaccion es: "+codigoTransa)
+                            
+                            if nuevoClien.transaNueva.search(codigoTransa)==True:
+                                transaccionita=empresaActual.transaccion.buscarByCodigo(codigoTransa)
+
+
+                                operacionosa=int(transaccionita.minutos)*int(cantitransa)
+
+                                print("el tiempo promedio que tardará "+ nuevoClien.nombre+" es: ",operacionosa," minutos")
+                            else:
+                                print("esa transacción no existe")
+                        elif opcion=="6":
+                            print("estás en 'Simular actividad' ")
+            elif respuesturbia=="2":
+                print(Fore.BLUE + "----------MENÚ DE SELECCION--------")
+                codiConfi = input(Fore.BLUE + "Ingresar codigo de la configuración a utilizar: \n")
+                confiActual = listaEmpresasConfi.buscarByCodigo(codiConfi)
+                empresaCurrent=listaEmpresas.buscarByCodigo(confiActual.idE)
+                if confiActual is None:
+                    print(Fore.RED + "Esa configuración no se encuentra registrado en la lista")
+                else:
+                    
+                    puntoCurrent=empresaCurrent.puntoAtencion.buscarByCodigo(confiActual.idP)
+        
+                    if puntoCurrent is None:
+                        print(Fore.RED + "Ese escritorio no se encuentra registrado en la lista de empresas")
+                    else:
+                        
+                        print("la empresa a manipular es "+empresaCurrent.nombre+", y ")
+                        print("el punto de atención es "+puntoCurrent.nombre+", indique a continuación qué desea hacer: \n")
+                        print(Fore.BLUE + "1-- Ver estado de punto de atención")
+                        print(Fore.BLUE + "2-- Activar escritorio de servicio")
+                        print(Fore.BLUE + "3-- Desactivar escritorio de servicio")
+                        print(Fore.BLUE + "4-- Atender cliente")
+                        print(Fore.BLUE + "5-- Solicitud de atención")
+                        print(Fore.BLUE + "6-- Simular actividad")
+                    
+                        opcion = input(Fore.BLUE + "Favor seleccionar una opcion porfavor \n")
+
+                        if opcion=="1":
+                            print("Información de Puntos de Atención:\n")
+
+                            print("los escritorios activos son: ")
+
+                            listaEscriActivo = cargaArchivo2(ruta)[2]
+                            listaEscriActivo.print()
+
+                    
+
+                            puntoCurrent.escritorio.delete()
+                            puntoCurrent.escritorio.delete()
+                            
+                            
+                            print("los escritorios inactivos son: ")
+                            puntoCurrent.escritorio.printPila()
+                            
+                            
+                            
+                               
+                        elif opcion=="2":
+                            puntoCurrent.escritorio.raiz.estado="activo"
+                            print(Fore.GREEN +"el escritorio de: "+puntoCurrent.escritorio.raiz.nombreE+" ha sido activado exitosamente!")
+                        elif opcion=="3":
+                            puntoCurrent.escritorio.raiz.estado="inactivo"
+                            print(Fore.GREEN +"el escritorio de "+puntoCurrent.escritorio.raiz.nombreE+" ha sido desactivado exitosamente!")
+                        elif opcion=="4":
+                            
+                            print("estas en 'Atender cliente' ")
+                        elif opcion=="5":
+                            nombreClientoso=input("¿Cuál es el nombre del nuevo cliente?\n ")
+                            dpiClientoso=input("¿Cuál es el dpi del nuevo cliente?\n ")
+                            
+
+                            nuevoClientoso=Clientes(dpiClientoso,nombreClientoso)
+                            listaClientes.append(nuevoClientoso)
+                        
+
+                            print(Fore.GREEN + "Se agregado al cliente con exito!!\n")
+                            
+                            newCode=input(Fore.BLUE +"Ingrese el código de la transacción que realizará\n ")
+                            amount=input("Ingrese la cantidad de transacciones de ese tipo que hará\n ")
+                            
+                            newTransa=TransaNueva(newCode,amount)
+                            nuevoClientoso.transaNueva.append(newTransa)
+
+                            print("el id de la nueva transaccion es: "+newCode)
+                            
+                            if nuevoClientoso.transaNueva.search(newCode)==True:
+                                transaccionosa=empresaCurrent.transaccion.buscarByCodigo(newCode)
+
+
+                                operacionsita=int(transaccionosa.minutos)*int(amount)
+
+                                print("el tiempo promedio que tardará "+ nuevoClientoso.nombre+" es: ",operacionsita," minutos")
+                            else:
+                                print("esa transacción no existe")
+
+
+                        elif opcion=="6":
+                            print("estás en 'Simular actividad' ")
+                            
     
 
 def cargaArchivo1(ruta):
@@ -269,10 +384,10 @@ def cargaArchivo1(ruta):
             nuevaEmpresa.transaccion.append(nuevaTransaccion)
 
         listaEmpresasDesdeXml.append(nuevaEmpresa)
-        listaEmpresasDesdeXml.print()
-        nuevaEmpresa.puntoAtencion.print()
-        nuevoPuntoAtencion.escritorio.printPila()
-        nuevaEmpresa.transaccion.print()
+        #listaEmpresasDesdeXml.print()
+        #nuevaEmpresa.puntoAtencion.print()
+        #nuevoPuntoAtencion.escritorio.printPila()
+        #nuevaEmpresa.transaccion.print()
 
 
 
@@ -284,30 +399,28 @@ def cargaArchivo2(ruta):
     listaConfiDesdeXml = ListaDobleConfi()
     listaEscriADesdeXml = ListaDobleEscriA()
     listaClientesDesdeXml = ListaDobleC()
-    cont=0
     
     for element in listadoInicial:
         for datotes in element.iter("configInicial"):
             nuevaConfi = Configuracion(datotes.attrib["id"],datotes.attrib["idEmpresa"],datotes.attrib["idPunto"])
             listaConfiDesdeXml.append(nuevaConfi)
-        listaConfiDesdeXml.print()
+        #listaConfiDesdeXml.print()
         for datosos in element.iter("escritorio"):
             nuevoEscriA=EscriActivos(datosos.attrib["idEscritorio"])
             listaEscriADesdeXml.append(nuevoEscriA)
-        listaEscriADesdeXml.print()
+        #listaEscriADesdeXml.print()
         for datita in element.iter("cliente"):
             for nombreC in datita.iter("nombre"):
                 nuevoCliente=Clientes(datita.attrib["dpi"],nombreC.text)  
             listaClientesDesdeXml.append(nuevoCliente)
-            listaClientesDesdeXml.print() 
+            #listaClientesDesdeXml.print() 
             for datosa in datita.iter("transaccion"):                    
                 nuevaTransa=TransaNueva(datosa.attrib["idTransaccion"],datosa.attrib["cantidad"])
                 nuevoCliente.transaNueva.append(nuevaTransa)
-            nuevoCliente.transaNueva.print()
+            #nuevoCliente.transaNueva.print()
            
     
-    return listaConfiDesdeXml, listaEscriADesdeXml, listaClientesDesdeXml
-    
+    return listaConfiDesdeXml, listaClientesDesdeXml, listaEscriADesdeXml
 
     
              

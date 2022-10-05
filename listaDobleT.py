@@ -37,3 +37,23 @@ class ListaDobleT:
         
         print(cadena)  
 
+    def search(self,dato):
+        i=self.raiz
+        while i:
+            if i.codigo==dato:
+                print(dato)
+                return True
+            i=i.siguiente
+        return False
+    
+    def buscarByCodigo(self, codigo):
+        nodoAux=self.raiz
+        
+        while nodoAux.codigo!=codigo:
+            if nodoAux.siguiente is not None:
+                nodoAux=nodoAux.siguiente
+            else:
+                return None
+        
+        return nodoAux
+
